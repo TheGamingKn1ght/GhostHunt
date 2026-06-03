@@ -34,17 +34,12 @@ public class NetworkInputManager: NetworkBehaviour
         inputActions.Movement.MovementKeys.performed += Move;
         inputActions.Movement.MovementKeys.canceled += Move;
 
-        inputActions.Look.Aim.performed += Look;
-        inputActions.Look.Aim.canceled += Look;
     }
 
     private void OnDisable()
     {
         inputActions.Movement.MovementKeys.performed -= Move;
         inputActions.Movement.MovementKeys.canceled -= Move;
-
-        inputActions.Look.Aim.performed -= Look;
-        inputActions.Look.Aim.canceled -= Look;
     }
 
     #region Input Callbacks
@@ -57,15 +52,6 @@ public class NetworkInputManager: NetworkBehaviour
         }
 
     #endregion
-
-        #region MouseMovement Callbacks
-
-        private void Look(InputAction.CallbackContext ctx)
-        {
-            aimInputs = ctx.ReadValue<Vector2>();
-        }
-
-        #endregion
 
     #endregion
 }
