@@ -165,7 +165,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""id"": ""86de97b0-f5e8-4914-a4f7-caaa2a129164"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Aim"",
                     ""type"": ""PassThrough"",
                     ""id"": ""ac4451bd-d9d0-4c93-9d47-97eab66b39b3"",
                     ""expectedControlType"": ""Axis"",
@@ -182,7 +182,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -193,7 +193,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -207,7 +207,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Movement_MovementKeys = m_Movement.FindAction("Movement Keys", throwIfNotFound: true);
         // Look
         m_Look = asset.FindActionMap("Look", throwIfNotFound: true);
-        m_Look_Newaction = m_Look.FindAction("New action", throwIfNotFound: true);
+        m_Look_Aim = m_Look.FindAction("Aim", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -385,7 +385,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     // Look
     private readonly InputActionMap m_Look;
     private List<ILookActions> m_LookActionsCallbackInterfaces = new List<ILookActions>();
-    private readonly InputAction m_Look_Newaction;
+    private readonly InputAction m_Look_Aim;
     /// <summary>
     /// Provides access to input actions defined in input action map "Look".
     /// </summary>
@@ -398,9 +398,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public LookActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Look/Newaction".
+        /// Provides access to the underlying input action "Look/Aim".
         /// </summary>
-        public InputAction @Newaction => m_Wrapper.m_Look_Newaction;
+        public InputAction @Aim => m_Wrapper.m_Look_Aim;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -427,9 +427,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_LookActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_LookActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
         }
 
         /// <summary>
@@ -441,9 +441,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="LookActions" />
         private void UnregisterCallbacks(ILookActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
         }
 
         /// <summary>
@@ -500,11 +500,11 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface ILookActions
     {
         /// <summary>
-        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Aim" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }

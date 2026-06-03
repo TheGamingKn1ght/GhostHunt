@@ -79,7 +79,7 @@
             "id": "86de97b0-f5e8-4914-a4f7-caaa2a129164",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Aim",
                     "type": "PassThrough",
                     "id": "ac4451bd-d9d0-4c93-9d47-97eab66b39b3",
                     "expectedControlType": "Axis",
@@ -96,7 +96,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -107,7 +107,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
