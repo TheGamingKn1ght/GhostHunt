@@ -7,10 +7,14 @@ public class NetworkInputManager: NetworkBehaviour
     public static InputActions inputActions;
 
     public static Vector2 movementInputs;
+    public static Vector2 lookInputs;
 
     private void Awake()
     {
         inputActions = new InputActions();
+
+        inputActions.Look.MouseX.performed += ctx => lookInputs.x = ctx.ReadValue<float>();
+        inputActions.Look.MouseY.performed += ctx => lookInputs.y = ctx.ReadValue<float>();
     }
 
     private void Start()
@@ -18,6 +22,11 @@ public class NetworkInputManager: NetworkBehaviour
         if (!IsOwner) { this.enabled = false; }
 
         inputActions.Enable();
+    }
+
+    private void Update()
+    {
+        Debug.Log(lookInputs.x + " : " + lookInputs.y);
     }
 
     private void OnEnable()

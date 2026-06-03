@@ -79,9 +79,18 @@
             "id": "86de97b0-f5e8-4914-a4f7-caaa2a129164",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "MouseX",
                     "type": "PassThrough",
                     "id": "ac4451bd-d9d0-4c93-9d47-97eab66b39b3",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MouseY",
+                    "type": "PassThrough",
+                    "id": "ab02897c-3dbb-4718-9db2-08290785a114",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -96,18 +105,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "MouseX",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "4eaef08e-e63b-4260-94de-e3112c7e0f32",
+                    "id": "9a47a4d0-3388-43d8-8cc4-28dd241f450b",
                     "path": "<Mouse>/delta/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "MouseY",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

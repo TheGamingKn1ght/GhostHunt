@@ -9,14 +9,13 @@ public class NetworkPlayerMove : NetworkBehaviour
 
     private void Start()
     {
-        if (!IsOwner) return;
+        if (!IsOwner) this.enabled=false;
 
         rb = GetComponent<Rigidbody>();
     }
     
     private void FixedUpdate()
     {
-        if (!IsOwner) return;
         Move();
     }
 
