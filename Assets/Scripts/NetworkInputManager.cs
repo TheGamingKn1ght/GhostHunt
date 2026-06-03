@@ -24,11 +24,6 @@ public class NetworkInputManager: NetworkBehaviour
         inputActions.Enable();
     }
 
-    private void Update()
-    {
-        Debug.Log(lookInputs.x + " : " + lookInputs.y);
-    }
-
     private void OnEnable()
     {
         inputActions.Movement.MovementKeys.performed += Move;
