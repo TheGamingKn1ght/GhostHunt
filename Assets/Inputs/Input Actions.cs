@@ -100,6 +100,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""9009134d-4f2c-456d-b29c-a1bc6b8c1af3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -157,6 +166,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Movement Keys"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""470b331b-ef8e-464d-a084-199ea665f43b"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -214,6 +234,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_MovementKeys = m_Movement.FindAction("Movement Keys", throwIfNotFound: true);
+        m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
         // Look
         m_Look = asset.FindActionMap("Look", throwIfNotFound: true);
         m_Look_MouseX = m_Look.FindAction("MouseX", throwIfNotFound: true);
@@ -300,6 +321,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_Movement_MovementKeys;
+    private readonly InputAction m_Movement_Sprint;
     /// <summary>
     /// Provides access to input actions defined in input action map "Movement".
     /// </summary>
@@ -315,6 +337,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Movement/MovementKeys".
         /// </summary>
         public InputAction @MovementKeys => m_Wrapper.m_Movement_MovementKeys;
+        /// <summary>
+        /// Provides access to the underlying input action "Movement/Sprint".
+        /// </summary>
+        public InputAction @Sprint => m_Wrapper.m_Movement_Sprint;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -344,6 +370,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @MovementKeys.started += instance.OnMovementKeys;
             @MovementKeys.performed += instance.OnMovementKeys;
             @MovementKeys.canceled += instance.OnMovementKeys;
+            @Sprint.started += instance.OnSprint;
+            @Sprint.performed += instance.OnSprint;
+            @Sprint.canceled += instance.OnSprint;
         }
 
         /// <summary>
@@ -358,6 +387,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @MovementKeys.started -= instance.OnMovementKeys;
             @MovementKeys.performed -= instance.OnMovementKeys;
             @MovementKeys.canceled -= instance.OnMovementKeys;
+            @Sprint.started -= instance.OnSprint;
+            @Sprint.performed -= instance.OnSprint;
+            @Sprint.canceled -= instance.OnSprint;
         }
 
         /// <summary>
@@ -512,6 +544,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMovementKeys(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Sprint" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSprint(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Look" which allows adding and removing callbacks.

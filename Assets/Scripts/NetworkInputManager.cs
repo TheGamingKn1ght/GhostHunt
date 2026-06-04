@@ -9,6 +9,8 @@ public class NetworkInputManager: NetworkBehaviour
     public static Vector2 movementInputs;
     public static Vector2 lookInputs;
 
+    public static event System.Action OnSprintInput;
+
     private void Awake()
     {
         inputActions = new InputActions();
@@ -29,6 +31,7 @@ public class NetworkInputManager: NetworkBehaviour
         inputActions.Movement.MovementKeys.performed += Move;
         inputActions.Movement.MovementKeys.canceled += Move;
 
+        inputActions.Movement.Sprint.performed += ctx => OnSprintInput?.Invoke();
     }
 
     private void OnDisable()
