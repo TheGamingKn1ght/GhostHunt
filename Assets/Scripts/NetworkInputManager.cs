@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Netcode;
+using System;
+using Unity.VisualScripting;
+using static UnityEngine.Rendering.DebugUI;
 
 public class NetworkInputManager: NetworkBehaviour
 {
@@ -8,8 +11,11 @@ public class NetworkInputManager: NetworkBehaviour
 
     public static Vector2 movementInputs;
     public static Vector2 lookInputs;
+    public static bool sprintInput;
 
-    public static event System.Action OnSprintInput;
+    public static event Action onSprintToggle;
+    
+
 
     private void Awake()
     {
@@ -31,13 +37,17 @@ public class NetworkInputManager: NetworkBehaviour
         inputActions.Movement.MovementKeys.performed += Move;
         inputActions.Movement.MovementKeys.canceled += Move;
 
-        inputActions.Movement.Sprint.performed += ctx => OnSprintInput?.Invoke();
+        inputActions.Movement.Sprint.performed += OnSprintToggle;
+        inputActions.Movement.Sprint.canceled += OnSprintToggle;
     }
 
     private void OnDisable()
     {
         inputActions.Movement.MovementKeys.performed -= Move;
         inputActions.Movement.MovementKeys.canceled -= Move;
+
+        inputActions.Movement.Sprint.performed -= OnSprintToggle;
+        inputActions.Movement.Sprint.canceled -= OnSprintToggle;
     }
 
     #region Input Callbacks
@@ -47,6 +57,12 @@ public class NetworkInputManager: NetworkBehaviour
         private void Move(InputAction.CallbackContext ctx)
         {
             movementInputs = ctx.ReadValue<Vector2>();
+        }
+
+        private void OnSprintToggle(InputAction.CallbackContext ctx)
+        {
+            sprintInput = Mathf.Approximately(Math.Min(ctx.ReadValue<float>(),1),1);
+            onSprintToggle?.Invoke();
         }
 
     #endregion

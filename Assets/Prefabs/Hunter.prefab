@@ -295,7 +295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkPlayerMove
   ShowTopMostFoldoutHeaderGroup: 1
-  moveSpeed: 10
+  walkSpeed: 10
+  sprintSpeed: 20
 --- !u!114 &1969624560336099113
 MonoBehaviour:
   m_ObjectHideFlags: 0
