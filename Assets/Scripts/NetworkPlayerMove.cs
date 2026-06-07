@@ -33,7 +33,8 @@ public class NetworkPlayerMove : NetworkBehaviour
 
     private void Sprint()
     {
-        moveSpeed = NetworkInputManager.sprintInput ? sprintSpeed : walkSpeed;
+        //if sprintInput is active, assign walkspeed to sprintSpeed, otherwise assign walkspeed
+        moveSpeed = NetworkInputManager.sprintInput ? sprintSpeed : walkSpeed; 
         Debug.Log("Sprinting : " + NetworkInputManager.sprintInput);
     }
 
