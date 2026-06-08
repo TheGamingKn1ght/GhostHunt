@@ -61,7 +61,7 @@ public class NetworkInputManager: NetworkBehaviour
 
         private void OnSprintToggle(InputAction.CallbackContext ctx)
         {
-            sprintInput = Mathf.Approximately(Math.Min(ctx.ReadValue<float>(),1),1);
+            sprintInput = Convert.ToBoolean(ctx.ReadValue<float>());
             onSprintToggle?.Invoke();
         }
 
