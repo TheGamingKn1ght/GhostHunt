@@ -3,6 +3,7 @@ using UnityEngine;
 public class NetworkHunterMovement : NetworkAbstractBaseMovement
 {
     [SerializeField] private float sprintSpeed;
+    [SerializeField] private float jogSpeed;
     NetworkHunterStamina staminaObj;
 
     protected override void Start()
@@ -22,10 +23,14 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
 
     private void Sprint()
     {
-        if (CanSprint())
+        if (CanSprint() && NetworkInputManager.sprintInput)
         {
             moveSpeed = sprintSpeed;
             staminaObj.UseStamina();
+        }
+        else if(!CanSprint() && NetworkInputManager.sprintInput)
+        {
+            moveSpeed = jogSpeed;
         }
         else
         {
@@ -36,8 +41,9 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
     
     private bool CanSprint()
     {
-        return staminaObj.HasStamina && NetworkInputManager.sprintInput;//boollogic; (future)
+        return staminaObj.HasStamina;// && NetworkInputManager.sprintInput;//boollogic; (future)
     }
+
 
     #region Event Subscriptions
     private void OnEnable()

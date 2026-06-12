@@ -314,6 +314,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   baseMoveSpeed: 10
   sprintSpeed: 20
+  jogSpeed: 12.5
 --- !u!114 &2724854347812829001
 MonoBehaviour:
   m_ObjectHideFlags: 0
