@@ -9,7 +9,7 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
     protected float moveSpeed;
     protected Rigidbody rb;
 
-    private void Start()
+    protected virtual void Start()
     {
         if (!IsOwner) this.enabled = false;
 
@@ -17,12 +17,12 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
         moveSpeed = baseMoveSpeed;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Move();
     }
 
-    public virtual void Move()
+    protected virtual void Move()
     {
         Vector3 movement = new Vector3(NetworkInputManager.movementInputs.x, 0f, NetworkInputManager.movementInputs.y).normalized;
         movement = rb.transform.TransformDirection(movement);

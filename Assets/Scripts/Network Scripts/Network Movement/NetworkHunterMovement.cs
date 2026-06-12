@@ -6,6 +6,16 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
     private bool canSprint;
     private bool isSprinting = false;
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+    }
+
     private void Sprint()
     {
         if (canSprint)

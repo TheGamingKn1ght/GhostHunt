@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class NetworkHunterStamina : NetworkHunterMovement
+public class NetworkHunterStamina : NetworkBehaviour
 {
     [SerializeField] private float staminaDuration = 10;
     private float staminaTimer;
