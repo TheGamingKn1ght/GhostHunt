@@ -106,8 +106,8 @@ GameObject:
   - component: {fileID: 7045648588330745839}
   - component: {fileID: 1934271040718874271}
   - component: {fileID: 1969624560336099113}
-  - component: {fileID: 2724854347812829001}
   - component: {fileID: -5628087038049464131}
+  - component: {fileID: 2724854347812829001}
   m_Layer: 0
   m_Name: Hunter
   m_TagString: Untagged
@@ -299,22 +299,6 @@ MonoBehaviour:
   xSensitivity: 30
   ySensitivity: 30
   viewCam: {fileID: 8130166966452922376}
---- !u!114 &2724854347812829001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5074574123519833170}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1b4ba4e74416a9488d47802212712aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NetworkHunterStamina
-  ShowTopMostFoldoutHeaderGroup: 1
-  baseMoveSpeed: 0
-  sprintSpeed: 0
-  staminaDuration: 10
 --- !u!114 &-5628087038049464131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +314,20 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   baseMoveSpeed: 10
   sprintSpeed: 20
+--- !u!114 &2724854347812829001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074574123519833170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b4ba4e74416a9488d47802212712aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NetworkHunterStamina
+  ShowTopMostFoldoutHeaderGroup: 1
+  staminaDuration: 10
 --- !u!1 &7447083803178418106
 GameObject:
   m_ObjectHideFlags: 0

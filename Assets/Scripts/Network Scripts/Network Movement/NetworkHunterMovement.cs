@@ -3,28 +3,40 @@ using UnityEngine;
 public class NetworkHunterMovement : NetworkAbstractBaseMovement
 {
     [SerializeField] private float sprintSpeed;
-    private bool canSprint;
-    private bool isSprinting = false;
+    NetworkHunterStamina staminaObj;
 
     protected override void Start()
     {
         base.Start();
+        staminaObj = GetComponent<NetworkHunterStamina>();
     }
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
 
+    private void Update()
+    {
+        Sprint();
     }
 
     private void Sprint()
     {
-        if (canSprint)
+        if (CanSprint())
         {
-            moveSpeed = NetworkInputManager.sprintInput ? sprintSpeed : baseMoveSpeed;
-            isSprinting = true;
+            moveSpeed = sprintSpeed;
+            staminaObj.UseStamina();
         }
-        else { isSprinting = false; }
-
+        else
+        {
+            moveSpeed = baseMoveSpeed;
+            staminaObj.RegenerateStamina();
+        }
+    }
+    
+    private bool CanSprint()
+    {
+        return staminaObj.HasStamina && NetworkInputManager.sprintInput;//boollogic; (future)
     }
 
     #region Event Subscriptions
