@@ -12,9 +12,9 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
     protected CapsuleCollider playerCollider;
 
     [Header("Ground CheckSphere Parameters")]
-    [SerializeField] protected float sphereCheckOffset;
-    [SerializeField] protected float sphereCheckRadius;
-    [SerializeField] protected LayerMask groundMask;
+    protected float groundCheckSphereOffset = 0.64f;
+    protected float sphereCheckRadius = 0.4f;
+    protected LayerMask groundMask;
 
     protected virtual void Start()
     {
@@ -23,6 +23,7 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponent<CapsuleCollider>();
         moveSpeed = baseMoveSpeed;
+        groundMask |= 0x1 << 0;
     }
 
     protected virtual void FixedUpdate()
@@ -42,7 +43,7 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
 
     protected bool IsGrounded()
     {
-        return Physics.CheckSphere(transform.position + Vector3.down *sphereCheckOffset, sphereCheckRadius, groundMask, QueryTriggerInteraction.UseGlobal);
+        return Physics.CheckSphere(transform.position + Vector3.down *groundCheckSphereOffset, sphereCheckRadius, groundMask, QueryTriggerInteraction.UseGlobal);
     }
 
     #endregion
@@ -57,6 +58,6 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
         {
             Gizmos.color = Color.red;
         }
-        Gizmos.DrawSphere(transform.position + Vector3.down * sphereCheckOffset, sphereCheckRadius);
+        Gizmos.DrawSphere(transform.position + Vector3.down * groundCheckSphereOffset, sphereCheckRadius);
     }
 }
