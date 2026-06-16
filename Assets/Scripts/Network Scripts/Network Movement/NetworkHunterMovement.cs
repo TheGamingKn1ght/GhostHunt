@@ -20,7 +20,7 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
         //Crouch Variables
         playerHeight = transform.localScale;
         crouchHeight = new Vector3(playerHeight.x, playerHeight.y * 0.5f, playerHeight.z);
-        colliderHeight = this.collider.height;
+        colliderHeight = this.playerCollider.height;
         colliderCrouchHeight = colliderHeight * 0.5f;
     }
     protected override void FixedUpdate()
@@ -39,13 +39,13 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
         if (NetworkInputManager.crouchInput)
         {
             rb.transform.localScale = crouchHeight;
-            collider.height = colliderCrouchHeight;
+            playerCollider.height = colliderCrouchHeight;
             moveSpeed = crouchSpeed;
         }
         else
         {
             rb.transform.localScale = playerHeight;
-            collider.height = colliderHeight;
+            playerCollider.height = colliderHeight;
             moveSpeed = baseMoveSpeed;
         }
 

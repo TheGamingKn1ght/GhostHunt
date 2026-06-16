@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Netcode;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(NetworkInputManager))]
 public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
@@ -8,14 +9,19 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
 
     protected float moveSpeed;
     protected Rigidbody rb;
-    protected CapsuleCollider collider;
+    protected CapsuleCollider playerCollider;
+
+    [Header("Ground CheckSphere Parameters")]
+    [SerializeField] protected float sphereCheckOffset;
+    [SerializeField] protected float sphereCheckRadius;
+    [SerializeField] protected LayerMask groundMask;
 
     protected virtual void Start()
     {
         if (!IsOwner) this.enabled = false;
 
         rb = GetComponent<Rigidbody>();
-        collider = GetComponent<CapsuleCollider>();
+        playerCollider = GetComponent<CapsuleCollider>();
         moveSpeed = baseMoveSpeed;
     }
 
@@ -30,5 +36,27 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
         movement = rb.transform.TransformDirection(movement);
 
         rb.AddForce(movement * moveSpeed, ForceMode.Force);
+    }
+
+    #region Check Functions
+
+    protected bool IsGrounded()
+    {
+        return Physics.CheckSphere(transform.position + Vector3.down *sphereCheckOffset, sphereCheckRadius, groundMask, QueryTriggerInteraction.UseGlobal);
+    }
+
+    #endregion
+
+    private void OnDrawGizmos()
+    {
+        if (IsGrounded())
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawSphere(transform.position + Vector3.down * sphereCheckOffset, sphereCheckRadius);
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6975693260407407891}
   - component: {fileID: 6542296187843066106}
   - component: {fileID: 8519691543968454296}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 1969624560336099113}
   - component: {fileID: -5628087038049464131}
   - component: {fileID: 2724854347812829001}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hunter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,12 +124,13 @@ Transform:
   m_GameObject: {fileID: 5074574123519833170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.43, y: 1, z: 0.19}
+  m_LocalPosition: {x: 0.43, y: 1.017, z: 0.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7980017830522585686}
   - {fileID: 3142167585357491320}
+  - {fileID: 8834119776488421530}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8054016423243255693
@@ -145,13 +146,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
   GlobalObjectIdHash: 1027610742
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 2932448386
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -164,7 +165,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5074574123519833170}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 49767871dd05dc046a464167d0c5a43b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -313,6 +314,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NetworkHunterMovement
   ShowTopMostFoldoutHeaderGroup: 1
   baseMoveSpeed: 10
+  sphereCheckOffset: 0.64
+  sphereCheckRadius: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1
   sprintSpeed: 20
   crouchSpeed: 6
   jogSpeed: 12.5
@@ -342,7 +348,7 @@ GameObject:
   - component: {fileID: 8130166966452922376}
   - component: {fileID: 2460654092460383948}
   - component: {fileID: 8758848246870311875}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FPSCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -478,7 +484,7 @@ GameObject:
   - component: {fileID: 7980017830522585686}
   - component: {fileID: 4862553653165062218}
   - component: {fileID: 4986801657569509613}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
