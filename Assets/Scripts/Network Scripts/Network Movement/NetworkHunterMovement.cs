@@ -31,6 +31,7 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
     private void Update()
     {
         Sprint();
+        Crouch();
     }
 
     private void Crouch()
@@ -39,13 +40,13 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
         {
             rb.transform.localScale = crouchHeight;
             collider.height = colliderCrouchHeight;
-            //moveSpeed = crouchSpeed;
+            moveSpeed = crouchSpeed;
         }
         else
         {
             rb.transform.localScale = playerHeight;
             collider.height = colliderHeight;
-            //moveSpeed = baseMoveSpeed;
+            moveSpeed = baseMoveSpeed;
         }
 
     }
