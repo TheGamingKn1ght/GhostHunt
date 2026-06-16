@@ -12,10 +12,10 @@ public class NetworkInputManager: NetworkBehaviour
     public static Vector2 movementInputs;
     public static Vector2 lookInputs;
     public static bool sprintInput;
+    public static bool crouchInput;
 
     public static event Action onSprintToggle;
-    
-
+    public static event Action onCrouchToggle;
 
     private void Awake()
     {
@@ -39,6 +39,9 @@ public class NetworkInputManager: NetworkBehaviour
 
         inputActions.Movement.Sprint.performed += OnSprintToggle;
         inputActions.Movement.Sprint.canceled += OnSprintToggle;
+
+        inputActions.Movement.Crouch.performed += OnCrouchToggle;
+        inputActions.Movement.Crouch.canceled += OnCrouchToggle;
     }
 
     private void OnDisable()
@@ -48,6 +51,9 @@ public class NetworkInputManager: NetworkBehaviour
 
         inputActions.Movement.Sprint.performed -= OnSprintToggle;
         inputActions.Movement.Sprint.canceled -= OnSprintToggle;
+
+        inputActions.Movement.Sprint.performed -= OnCrouchToggle;
+        inputActions.Movement.Sprint.canceled -= OnCrouchToggle;
     }
 
     #region Input Callbacks
@@ -63,6 +69,12 @@ public class NetworkInputManager: NetworkBehaviour
         {
             sprintInput = Convert.ToBoolean(ctx.ReadValue<float>());
             onSprintToggle?.Invoke();
+        }
+
+        private void OnCrouchToggle(InputAction.CallbackContext ctx)
+        {
+            crouchInput = Convert.ToBoolean(ctx.ReadValue<float>());
+            onCrouchToggle?.Invoke();
         }
 
     #endregion

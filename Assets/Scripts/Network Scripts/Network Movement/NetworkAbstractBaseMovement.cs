@@ -8,12 +8,14 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
 
     protected float moveSpeed;
     protected Rigidbody rb;
+    protected CapsuleCollider collider;
 
     protected virtual void Start()
     {
         if (!IsOwner) this.enabled = false;
 
         rb = GetComponent<Rigidbody>();
+        collider = GetComponent<CapsuleCollider>();
         moveSpeed = baseMoveSpeed;
     }
 
