@@ -29,6 +29,7 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
     protected virtual void FixedUpdate()
     {
         Move();
+        SpeedLimiter();
     }
 
     protected virtual void Move()
@@ -36,8 +37,16 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
         Vector3 movement = new Vector3(NetworkInputManager.movementInputs.x, 0f, NetworkInputManager.movementInputs.y).normalized;
         movement = rb.transform.TransformDirection(movement);
 
-        rb.AddForce(movement * moveSpeed, ForceMode.Force);
+        rb.AddForce(movement * moveSpeed * 10f, ForceMode.Force);
     }
+
+    #region Physics Handler Functions
+
+    protected void SpeedLimiter()
+    {
+        rb.maxLinearVelocity = moveSpeed;
+    }
+    #endregion
 
     #region Check Functions
 

@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1027610742
+  GlobalObjectIdHash: 2932448386
   InScenePlacedSourceGlobalObjectIdHash: 2932448386
   DeferredDespawnTick: 0
   Ownership: 1
@@ -190,7 +190,7 @@ Rigidbody:
   m_GameObject: {fileID: 5074574123519833170}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 5
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -313,15 +313,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkHunterMovement
   ShowTopMostFoldoutHeaderGroup: 1
-  baseMoveSpeed: 10
-  groundCheckSphereOffset: 0
-  sphereCheckRadius: 0.4
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 1
-  sprintSpeed: 20
-  crouchSpeed: 6
-  jogSpeed: 12.5
+  baseMoveSpeed: 5
+  sprintSpeed: 10
+  crouchSpeed: 3
+  jogSpeed: 7.5
 --- !u!114 &2724854347812829001
 MonoBehaviour:
   m_ObjectHideFlags: 0
