@@ -8,6 +8,7 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
     [SerializeField] protected float baseMoveSpeed;
 
     protected float moveSpeed;
+    protected float accelerationModifier = 10f;
     protected Rigidbody rb;
     protected CapsuleCollider playerCollider;
 
@@ -37,7 +38,7 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
         Vector3 movement = new Vector3(NetworkInputManager.movementInputs.x, 0f, NetworkInputManager.movementInputs.y).normalized;
         movement = rb.transform.TransformDirection(movement);
 
-        rb.AddForce(movement * moveSpeed * 10f, ForceMode.Force);
+        rb.AddForce(movement * moveSpeed * accelerationModifier, ForceMode.Force);
     }
 
     #region Physics Handler Functions

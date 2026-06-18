@@ -105,6 +105,8 @@ GameObject:
   - component: {fileID: 1211008860054012742}
   - component: {fileID: 7045648588330745839}
   - component: {fileID: 1934271040718874271}
+  - component: {fileID: 6613347537764519000}
+  - component: {fileID: -8045358712129049798}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -187,7 +189,7 @@ Rigidbody:
   m_GameObject: {fileID: 5074574123519833170}
   serializedVersion: 5
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -281,6 +283,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkInputManager
   ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &6613347537764519000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074574123519833170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a132444145a424a8c78792535e425d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NetworkEntityMovement
+  ShowTopMostFoldoutHeaderGroup: 1
+  baseMoveSpeed: 6.5
+  overrideAccelerationModifier: 2.5
+--- !u!114 &-8045358712129049798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074574123519833170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b4a20f5d15c734e8f319622c793819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NetworkPlayerLook
+  ShowTopMostFoldoutHeaderGroup: 1
+  xSensitivity: 30
+  ySensitivity: 30
+  viewCam: {fileID: 8130166966452922376}
 --- !u!1 &7129707154944747906
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +363,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7129707154944747906}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
