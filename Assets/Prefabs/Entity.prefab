@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 1934271040718874271}
   - component: {fileID: 6613347537764519000}
   - component: {fileID: -8045358712129049798}
+  - component: {fileID: 8266341048768884639}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -314,6 +315,20 @@ MonoBehaviour:
   xSensitivity: 30
   ySensitivity: 30
   viewCam: {fileID: 8130166966452922376}
+--- !u!114 &8266341048768884639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5074574123519833170}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b64259ed9665c6409741e17e4e6a251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NetworkEntityAbility
+  ShowTopMostFoldoutHeaderGroup: 1
+  UseableAbility: {fileID: 0}
 --- !u!1 &7129707154944747906
 GameObject:
   m_ObjectHideFlags: 0

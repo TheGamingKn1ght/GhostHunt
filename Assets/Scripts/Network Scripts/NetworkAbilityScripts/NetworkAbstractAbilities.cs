@@ -4,10 +4,9 @@ using System.Collections;
 
 public class NetworkAbstractAbilities : NetworkBehaviour
 {
-    //Replace int with type "Ability" once you create each individual ability
-    NetworkList<int> Abilities = new NetworkList<int>(); 
+    [SerializeField] protected AbstractAbility UseableAbility;
 
-    public virtual void UseAbility()
+    protected virtual void UseAbility()
     {
         Debug.Log("using base ability functionality");
     }

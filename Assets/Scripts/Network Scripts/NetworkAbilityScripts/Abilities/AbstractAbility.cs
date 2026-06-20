@@ -3,6 +3,12 @@ using Unity.Netcode;
 
 public abstract class AbstractAbility : NetworkBehaviour
 {
-    //Create base profile of an ability
+    protected Rigidbody rb;
+
+    protected virtual void Start()
+    {
+        if (!IsOwner) this.enabled = false;
+        rb = GetComponent<Rigidbody>();
+    }
 }
 
