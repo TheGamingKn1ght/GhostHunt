@@ -1,0 +1,15 @@
+//Setting Up Vaulting For Obstacles In Game
+
+This system is not procedural and will need to be implemented by map designers carefully. Be mindful of bugs and 
+inconsistencies that may arise from incorrect implementation into the map.
+
+? How to make a surface vaultable:
+	- The prefab must have a collider
+	- The collider must carry the "Vaultable Obstacle" tag which can be set in the inspector
+	- The collider must be within the thickness threshold called "Max Vault Obstacle Thickness" set on the player prefab
+
+? What to be midful of when implementing vaultable obstacles
+	- Obstacles should never be taller than half the players height
+	- Obstacles should never be placed under low ceilings where players could vault up into and get stuck
+	- Only Hunters currently have the ability to vault
+

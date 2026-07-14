@@ -16,6 +16,7 @@ public class NetworkInputManager: NetworkBehaviour
 
     public static event Action onSprintToggle;
     public static event Action onCrouchToggle;
+    public static event Action onVaultInput;
 
     private void Awake()
     {
@@ -42,6 +43,8 @@ public class NetworkInputManager: NetworkBehaviour
 
         inputActions.Movement.Crouch.performed += OnCrouchToggle;
         inputActions.Movement.Crouch.canceled += OnCrouchToggle;
+
+        inputActions.Movement.Vault.performed += OnVaultInput;
     }
 
     private void OnDisable()
@@ -54,6 +57,8 @@ public class NetworkInputManager: NetworkBehaviour
 
         inputActions.Movement.Sprint.performed -= OnCrouchToggle;
         inputActions.Movement.Sprint.canceled -= OnCrouchToggle;
+
+        inputActions.Movement.Vault.performed -= OnVaultInput;
     }
 
     #region Input Callbacks
@@ -75,6 +80,11 @@ public class NetworkInputManager: NetworkBehaviour
         {
             crouchInput = Convert.ToBoolean(ctx.ReadValue<float>());
             onCrouchToggle?.Invoke();
+        }
+
+        private void OnVaultInput(InputAction.CallbackContext ctx)
+        {
+            onVaultInput?.Invoke();
         }
 
     #endregion

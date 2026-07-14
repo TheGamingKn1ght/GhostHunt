@@ -11,6 +11,7 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
     protected float accelerationModifier = 10f;
     protected Rigidbody rb;
     protected CapsuleCollider playerCollider;
+    protected bool canMove;
 
     [Header("Ground CheckSphere Parameters")]
     protected float groundCheckSphereOffset = 0.64f;
@@ -23,18 +24,21 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
 
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponent<CapsuleCollider>();
+        canMove = true;
         moveSpeed = baseMoveSpeed;
         groundMask |= 0x1 << 0;
     }
 
     protected virtual void FixedUpdate()
     {
+        if (!canMove) return;
         Move();
         SpeedLimiter();
     }
 
     protected virtual void Move()
     {
+        
         Vector3 movement = new Vector3(NetworkInputManager.movementInputs.x, 0f, NetworkInputManager.movementInputs.y).normalized;
         movement = rb.transform.TransformDirection(movement);
 

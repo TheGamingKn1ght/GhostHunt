@@ -118,6 +118,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Vault"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c54195d-ad3b-4cfa-8577-655faa671bb6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -197,6 +206,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fce66cf-156b-4e7b-886e-1333a47c4fd2"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Vault"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c8f284d-f2de-44a7-bb57-9fb9bcb95be9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Vault"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -256,6 +287,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Movement_MovementKeys = m_Movement.FindAction("Movement Keys", throwIfNotFound: true);
         m_Movement_Sprint = m_Movement.FindAction("Sprint", throwIfNotFound: true);
         m_Movement_Crouch = m_Movement.FindAction("Crouch", throwIfNotFound: true);
+        m_Movement_Vault = m_Movement.FindAction("Vault", throwIfNotFound: true);
         // Look
         m_Look = asset.FindActionMap("Look", throwIfNotFound: true);
         m_Look_MouseX = m_Look.FindAction("MouseX", throwIfNotFound: true);
@@ -344,6 +376,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_MovementKeys;
     private readonly InputAction m_Movement_Sprint;
     private readonly InputAction m_Movement_Crouch;
+    private readonly InputAction m_Movement_Vault;
     /// <summary>
     /// Provides access to input actions defined in input action map "Movement".
     /// </summary>
@@ -367,6 +400,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Movement/Crouch".
         /// </summary>
         public InputAction @Crouch => m_Wrapper.m_Movement_Crouch;
+        /// <summary>
+        /// Provides access to the underlying input action "Movement/Vault".
+        /// </summary>
+        public InputAction @Vault => m_Wrapper.m_Movement_Vault;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -402,6 +439,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @Vault.started += instance.OnVault;
+            @Vault.performed += instance.OnVault;
+            @Vault.canceled += instance.OnVault;
         }
 
         /// <summary>
@@ -422,6 +462,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @Vault.started -= instance.OnVault;
+            @Vault.performed -= instance.OnVault;
+            @Vault.canceled -= instance.OnVault;
         }
 
         /// <summary>
@@ -590,6 +633,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCrouch(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Vault" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnVault(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Look" which allows adding and removing callbacks.

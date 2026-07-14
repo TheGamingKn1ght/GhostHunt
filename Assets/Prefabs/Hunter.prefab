@@ -124,8 +124,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5074574123519833170}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.43, y: 1.017, z: 0.19}
+  m_LocalRotation: {x: -0, y: 0.05363331, z: -0, w: 0.9985607}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -133,7 +133,7 @@ Transform:
   - {fileID: 3142167585357491320}
   - {fileID: 8834119776488421530}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 6.149, z: 0}
 --- !u!114 &8054016423243255693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1027610742
+  GlobalObjectIdHash: 2932448386
   InScenePlacedSourceGlobalObjectIdHash: 2932448386
   DeferredDespawnTick: 0
   Ownership: 1
@@ -318,6 +318,12 @@ MonoBehaviour:
   sprintSpeed: 10
   crouchSpeed: 3
   jogSpeed: 7.5
+  vaultCheckHeight: 0.75
+  vaultCheckCastDistance: 1
+  maxVaultObstacleThickness: 3
+  maxVaultLookAngle: 35
+  vaultTime: 1
+  vaultTag: Vaultable Obstacle
 --- !u!114 &2724854347812829001
 MonoBehaviour:
   m_ObjectHideFlags: 0
