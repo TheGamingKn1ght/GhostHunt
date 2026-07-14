@@ -36,6 +36,7 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
         private RaycastHit vaultHit;
         private Vector3 checkPosition;
         bool playerHasSpaceToVault;
+    bool vaultPathIsUnobstructed;
     //
     
     private bool readyToVault;
@@ -165,8 +166,9 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
                             checkPosition = vaultHit.point + (totalDistance * obstacleThroughDir);
 
                             playerHasSpaceToVault = !(Physics.CheckSphere(checkPosition, playerCollider.radius));
+                            vaultPathIsUnobstructed = !(Physics.CheckSphere(transform.position + (transform.forward * (0.10f + playerCollider.radius)) + (transform.up * (colliderHeight / 3)), playerCollider.radius, groundMask));
 
-                            if (playerHasSpaceToVault)
+                            if (playerHasSpaceToVault && vaultPathIsUnobstructed)
                             {
                                 readyToVault = true;
                                 return;
@@ -181,7 +183,8 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
         }
     #endregion
 
-    private IEnumerator VaultCoroutine()
+    #region Coroutines
+        private IEnumerator VaultCoroutine()
     {
         float waitTime = vaultTime / 3;
         float elapsedTime = 0;
@@ -223,6 +226,7 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
 
         yield return null;
     }
+    #endregion
 
     private void OnDrawGizmos()
     {
@@ -231,9 +235,12 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
         Gizmos.color = vaultCheck ? Color.green : Color.red;
         Gizmos.DrawRay(new Vector3(transform.position.x, (transform.position.y - colliderHeight/2) + vaultCheckHeight, transform.position.z), vaultCheckDirection);
 
+        Gizmos.color = vaultPathIsUnobstructed ? Color.green: Color.red;
+        Gizmos.DrawSphere(transform.position + (transform.forward * (0.05f + playerCollider.radius)) + (transform.up * (colliderHeight / 3)), playerCollider.radius);
         
-        Gizmos.color = playerHasSpaceToVault && readyToVault ? Color.green : Color.red;
+        Gizmos.color = playerHasSpaceToVault && readyToVault && vaultPathIsUnobstructed ? Color.green : Color.red;
         Gizmos.DrawSphere(checkPosition, playerCollider.radius);
+
 
     }
 

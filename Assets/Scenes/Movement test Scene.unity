@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 583898855}
   - component: {fileID: 583898854}
   - component: {fileID: 583898853}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,8 +367,8 @@ Transform:
   m_GameObject: {fileID: 583898851}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.344, y: 1.506, z: -4.1}
-  m_LocalScale: {x: 0.5605282, y: 1.6592207, z: 0.343355}
+  m_LocalPosition: {x: 8.642, y: 1.506, z: -4.1}
+  m_LocalScale: {x: 0.5605282, y: 3.0927873, z: 0.343355}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1942337706}
@@ -702,7 +702,7 @@ GameObject:
   - component: {fileID: 1085835382}
   - component: {fileID: 1085835381}
   - component: {fileID: 1085835380}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Wall (2)
   m_TagString: Vaultable Obstacle
   m_Icon: {fileID: 0}
@@ -719,7 +719,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 7.603, y: -0.14, z: -4.1}
-  m_LocalScale: {x: 2.0631464, y: 1.6592207, z: 0.343355}
+  m_LocalScale: {x: 2.685185, y: 2.1106946, z: 0.343355}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1942337706}
@@ -814,7 +814,7 @@ GameObject:
   - component: {fileID: 1210582783}
   - component: {fileID: 1210582782}
   - component: {fileID: 1210582781}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,8 +830,8 @@ Transform:
   m_GameObject: {fileID: 1210582779}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.603, y: 2.87, z: -4.1}
-  m_LocalScale: {x: 2.0631464, y: 1.6592207, z: 0.343355}
+  m_LocalPosition: {x: 7.603, y: 3.81, z: -4.1}
+  m_LocalScale: {x: 2.6094675, y: 1.6592207, z: 0.343355}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1942337706}
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 1258235454}
   - component: {fileID: 1258235453}
   - component: {fileID: 1258235452}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -942,8 +942,8 @@ Transform:
   m_GameObject: {fileID: 1258235450}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.849, y: 1.506, z: -4.1}
-  m_LocalScale: {x: 0.5605282, y: 1.6592207, z: 0.343355}
+  m_LocalPosition: {x: 6.559, y: 1.506, z: -4.1}
+  m_LocalScale: {x: 0.5605282, y: 3.4082053, z: 0.343355}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1942337706}
@@ -1184,7 +1184,7 @@ GameObject:
   - component: {fileID: 1942337706}
   m_Layer: 3
   m_Name: Window
-  m_TagString: Untagged
+  m_TagString: Vaultable Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -318,7 +318,7 @@ MonoBehaviour:
   sprintSpeed: 10
   crouchSpeed: 3
   jogSpeed: 7.5
-  vaultCheckHeight: 0.75
+  vaultCheckHeight: 0.5
   vaultCheckCastDistance: 1
   maxVaultObstacleThickness: 3
   maxVaultLookAngle: 35
