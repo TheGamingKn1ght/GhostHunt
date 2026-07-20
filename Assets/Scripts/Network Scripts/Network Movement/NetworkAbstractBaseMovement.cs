@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 [RequireComponent(typeof(NetworkInputManager))]
 public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
 {
+    [Header("Base Movement Variables")]
     [SerializeField] protected float baseMoveSpeed;
 
     protected float moveSpeed;
@@ -14,9 +15,9 @@ public abstract class NetworkAbstractBaseMovement : NetworkBehaviour
     protected bool canMove;
 
     [Header("Ground CheckSphere Parameters")]
-    protected float groundCheckSphereOffset = 0.64f;
-    protected float sphereCheckRadius = 0.4f;
-    protected LayerMask groundMask;
+    [SerializeField] protected float groundCheckSphereOffset = 0.64f;
+    [SerializeField] protected float sphereCheckRadius = 0.4f;
+    [SerializeField] protected LayerMask groundMask;
 
     protected virtual void Start()
     {

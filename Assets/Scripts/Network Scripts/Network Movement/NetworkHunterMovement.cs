@@ -7,6 +7,7 @@ using System;
 
 public class NetworkHunterMovement : NetworkAbstractBaseMovement
 {
+    [Header("Advanced Movement Variables")]
     [SerializeField] private float sprintSpeed;
     [SerializeField] private float crouchSpeed;
     [SerializeField] private float jogSpeed;
@@ -143,6 +144,7 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
             {
                 vaultCheck = Physics.Raycast(new Vector3(transform.position.x, (transform.position.y - colliderHeight/2) + vaultCheckHeight, transform.position.z), 
                     transform.forward, out vaultHit, vaultCheckCastDistance, groundMask);
+           
 
                 if (vaultCheck && vaultHit.collider.CompareTag(vaultTag.ToString()))
                 {
@@ -155,9 +157,8 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
 
                     Vector3 reverseCastStart = vaultHit.point + (obstacleThroughDir * maxVaultObstacleThickness);
 
-                    if (lookAngle < maxVaultLookAngle && Physics.Raycast(reverseCastStart, obstacleNormal, out RaycastHit exitHit, 5f))
+                    if (lookAngle < maxVaultLookAngle && Physics.Raycast(reverseCastStart, obstacleNormal, out RaycastHit exitHit,5f))
                     {
-                        Debug.Log(lookAngle);
                         if (obstacleCollider == exitHit.collider)
                         {
                             float obstacleThickness = Vector3.Distance(vaultHit.point, exitHit.point);
@@ -185,51 +186,54 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
 
     #region Coroutines
         private IEnumerator VaultCoroutine()
-    {
-        float waitTime = vaultTime / 3;
-        float elapsedTime = 0;
-        Vector3 vaultUpHeightPosition = new Vector3(transform.position.x,transform.position.y + playerCollider.height/2, transform.position.z);
-        Vector3 finalPosition = checkPosition;
-
-        while (elapsedTime < waitTime)
         {
-            transform.position = Vector3.Lerp(transform.position, vaultUpHeightPosition, 1);
-            elapsedTime += Time.deltaTime;
+            float waitTime = vaultTime / 3;
+            float elapsedTime = 0;
+            Vector3 vaultUpHeightPosition = new Vector3(transform.position.x,transform.position.y + playerCollider.height/2, transform.position.z);
+            Vector3 finalPosition = checkPosition;
+
+            while (elapsedTime < waitTime)
+            {
+                transform.position = Vector3.Lerp(transform.position, vaultUpHeightPosition, 1);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            elapsedTime = 0;
+
+            while(elapsedTime < waitTime)
+            {
+                transform.position = Vector3.Lerp(transform.position, 
+                    new Vector3(finalPosition.x,transform.position.y, finalPosition.z),1);
+                elapsedTime += Time.deltaTime;
+
+                yield return null;
+            }
+
+            elapsedTime = 0;
+
+            while(elapsedTime < waitTime)
+            {
+                transform.position = Vector3.Lerp(transform.position,finalPosition, 1);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            
+            rb.useGravity = true;
+            vaulting = false;
+            onEndVault.Invoke();
+            canMove = true;
+
             yield return null;
         }
-
-        elapsedTime = 0;
-
-        while(elapsedTime < waitTime)
-        {
-            transform.position = Vector3.Lerp(transform.position, 
-                new Vector3(finalPosition.x,transform.position.y, finalPosition.z),1);
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        elapsedTime = 0;
-
-        while(elapsedTime < waitTime)
-        {
-            transform.position = Vector3.Lerp(transform.position,finalPosition, 1);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        
-        rb.useGravity = true;
-        vaulting = false;
-        onEndVault.Invoke();
-        canMove = true;
-
-        yield return null;
-    }
     #endregion
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = IsGrounded() ? Color.green : Color.red;
+        Gizmos.DrawSphere(transform.position + Vector3.down * groundCheckSphereOffset, sphereCheckRadius);
+
         Vector3 vaultCheckDirection = transform.forward * vaultCheckCastDistance;
 
         Gizmos.color = vaultCheck ? Color.green : Color.red;

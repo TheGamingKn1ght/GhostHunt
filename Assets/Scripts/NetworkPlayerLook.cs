@@ -33,7 +33,6 @@ public class NetworkPlayerLook : NetworkBehaviour
 
     private void Update()
     {
-        Debug.Log(canLook);
         if (!canLook) return;
         Look();
     }
