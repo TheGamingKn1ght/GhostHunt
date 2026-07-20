@@ -37,9 +37,11 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
         private RaycastHit vaultHit;
         private Vector3 checkPosition;
         bool playerHasSpaceToVault;
-    bool vaultPathIsUnobstructed;
+        bool vaultPathIsUnobstructed;
     //
-    
+
+    private bool isSprinting;
+    private bool isCrouching;
     private bool readyToVault;
     private bool vaulting;
 
@@ -71,15 +73,13 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
     private void Update()
     {
         VaultCheck();
-        Sprint();
         Crouch();
-
-        
+        Sprint();
     }
 
     private void Crouch()
     {
-        if (NetworkInputManager.crouchInput)
+        if (isCrouching)
         {
             rb.transform.localScale = crouchHeight;
             playerCollider.height = colliderCrouchHeight;
@@ -96,12 +96,13 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
 
     private void Sprint()
     {
-        if (CanSprint() && NetworkInputManager.sprintInput)
+        if (isCrouching) return;
+        if (CanSprint() && isSprinting)
         {
             moveSpeed = sprintSpeed;
             staminaObj.UseStamina();
         }
-        else if(!CanSprint() && NetworkInputManager.sprintInput)
+        else if(!CanSprint() && isSprinting)
         {
             moveSpeed = jogSpeed;
         }
@@ -127,18 +128,32 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
         
     }
 
-    #region Check Functions
-        private bool CanSprint()
-        {
-            return staminaObj.HasStamina;// && NetworkInputManager.sprintInput;//boollogic; (future)
-        }
+    #region Toggle Functions
+    private void ToggleSprint()
+    {
+        if (NetworkInputManager.sprintInput) { isSprinting = true; return; }
+        isSprinting = false;
+    }
 
-        /// <summary>
-        /// Checks If The Player Currently Meets All Prerequisits To Vault.
-        /// This Includes Being In Range Of An Obstacle With A "Vaultable Obstacle" Tag, Facing The Obstacle At The Correct Angle And Having An Unimpeeded
-        /// Exit Area For The Vault.
-        /// </summary>
-        private void VaultCheck()
+    private void ToggleCrouch()
+    {
+        if (NetworkInputManager.crouchInput) { isCrouching = true; return; }
+        isCrouching = false;
+    }
+    #endregion
+
+    #region Check Functions
+    private bool CanSprint()
+    {
+        return staminaObj.HasStamina;// && NetworkInputManager.sprintInput;//boollogic; (future)
+    }
+
+    /// <summary>
+    /// Checks If The Player Currently Meets All Prerequisits To Vault.
+    /// This Includes Being In Range Of An Obstacle With A "Vaultable Obstacle" Tag, Facing The Obstacle At The Correct Angle And Having An Unimpeeded
+    /// Exit Area For The Vault.
+    /// </summary>
+    private void VaultCheck()
         {
             if (IsGrounded())
             {
@@ -252,15 +267,15 @@ public class NetworkHunterMovement : NetworkAbstractBaseMovement
     #region Event Subscriptions
     private void OnEnable()
     {
-        NetworkInputManager.onSprintToggle += Sprint;
-        NetworkInputManager.onCrouchToggle += Crouch;
+        NetworkInputManager.onSprintToggle += ToggleSprint;
+        NetworkInputManager.onCrouchToggle += ToggleCrouch;
         NetworkInputManager.onVaultInput += Vault;
     }
 
     private void OnDisable()
     {
-        NetworkInputManager.onSprintToggle -= Sprint;
-        NetworkInputManager.onCrouchToggle -= Crouch;
+        NetworkInputManager.onSprintToggle -= ToggleSprint;
+        NetworkInputManager.onCrouchToggle -= ToggleCrouch;
         NetworkInputManager.onVaultInput -= Vault;
     }
     #endregion
